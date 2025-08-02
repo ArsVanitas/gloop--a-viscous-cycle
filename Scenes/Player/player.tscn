@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn48uh7ua5u5s"]
+
+[ext_resource type="Script" uid="uid://dio3qtrcp825d" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://cxlqh3pmh62sn" path="res://Assets/Temp/slime_body.png" id="1_uvnfx"]
+[ext_resource type="Resource" uid="uid://dcimg2ygmt2tb" path="res://Resources/PlayerStats.tres" id="2_mtuoh"]
+[ext_resource type="Script" uid="uid://dcys4eiobrpci" path="res://Scenes/states.gd" id="4_htcer"]
+[ext_resource type="Script" uid="uid://drfbjshd6s8ak" path="res://Scenes/Player/attack.gd" id="5_dd0ac"]
+[ext_resource type="Script" uid="uid://dsv7af2g6e4qb" path="res://Scenes/Player/movement.gd" id="5_htcer"]
+[ext_resource type="Texture2D" uid="uid://ddcj103clnjb2" path="res://Assets/Temp/muzzle_flash.png" id="7_0u5uq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3d8c"]
+radius = 25.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("FiniteStateMachine") groups=["Player"]]
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_a3d8c")
+stats = ExtResource("2_mtuoh")
+FiniteStateMachine = NodePath("StateMachine")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -21)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_uvnfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_a3d8c")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_htcer")
+player = NodePath("..")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+
+[node name="Attack" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_dd0ac")
+player = NodePath("../..")
+
+[node name="Movement" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_htcer")
+player = NodePath("../..")
+
+[node name="Dash" type="Node2D" parent="StateMachine"]
+
+[node name="Death" type="Node2D" parent="StateMachine"]
+
+[node name="CrosshairMark" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+
+[node name="Crosshair" type="Sprite2D" parent="CrosshairMark"]
+unique_name_in_owner = true
+position = Vector2(40, 0)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("7_0u5uq")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 84.0
+offset_bottom = 33.0
+step = 1.0
+rounded = true
+
+[node name="AttackSpeed" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://dcimg2ygmt2tb"]
+
+[ext_resource type="Script" uid="uid://dnkmc4gaa4iwm" path="res://Scripts/Stats.gd" id="1_c26vb"]
+
+[resource]
+script = ExtResource("1_c26vb")
+max_hp = 100
+health = 100
+defense = 0
+move_speed = 200
+ranged_damage = 1
+range = 300
+melee_damage = 1
+can_dash = false
+metadata/_custom_type_script = "uid://dnkmc4gaa4iwm"

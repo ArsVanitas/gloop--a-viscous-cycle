@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeCardResource" load_steps=3 format=3 uid="uid://cruy14rc30kfa"]
+
+[ext_resource type="Script" uid="uid://cbm1drwv2km8u" path="res://Scripts/UpgradeCardRes.gd" id="1_01ni4"]
+[ext_resource type="Texture2D" uid="uid://ddcj103clnjb2" path="res://Assets/Temp/muzzle_flash.png" id="1_j11ie"]
+
+[resource]
+script = ExtResource("1_01ni4")
+title = "Attack Mod"
+texture = ExtResource("1_j11ie")
+description = "Damage +10"
+icon = ExtResource("1_j11ie")
+stat_name = "damage"
+amount = 10
+metadata/_custom_type_script = "uid://cbm1drwv2km8u"

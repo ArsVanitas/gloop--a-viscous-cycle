@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c26s26dij1m24"]
+
+[ext_resource type="Texture2D" uid="uid://dlowooqwi1mgw" path="res://Assets/World/Background_Arena.png" id="1_t1gg8"]
+
+[node name="World" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -321.0
+offset_top = -176.0
+offset_right = 959.0
+offset_bottom = 544.0
+texture = ExtResource("1_t1gg8")
+metadata/_edit_use_anchors_ = true

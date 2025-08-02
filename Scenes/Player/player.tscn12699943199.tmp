@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn48uh7ua5u5s"]
+
+[ext_resource type="Script" uid="uid://dio3qtrcp825d" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://cxlqh3pmh62sn" path="res://Assets/Temp/slime_body.png" id="1_uvnfx"]
+[ext_resource type="Resource" uid="uid://dcimg2ygmt2tb" path="res://Resources/PlayerStats.tres" id="2_mtuoh"]
+[ext_resource type="Script" uid="uid://dcys4eiobrpci" path="res://Scenes/Player/states.gd" id="4_htcer"]
+[ext_resource type="Script" uid="uid://drfbjshd6s8ak" path="res://Scenes/Player/attack.gd" id="5_dd0ac"]
+[ext_resource type="Script" uid="uid://dsv7af2g6e4qb" path="res://Scenes/Player/movement.gd" id="5_htcer"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3d8c"]
+radius = 32.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a3d8c")
+stats = ExtResource("2_mtuoh")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -21)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_uvnfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("CircleShape2D_a3d8c")
+
+[node name="States" type="Node2D" parent="."]
+script = ExtResource("4_htcer")
+
+[node name="Idle" type="Node2D" parent="States"]
+
+[node name="Attack" type="Node2D" parent="States"]
+script = ExtResource("5_dd0ac")
+
+[node name="Movement" type="Node2D" parent="States" node_paths=PackedStringArray("player")]
+script = ExtResource("5_htcer")
+player_stats = ExtResource("2_mtuoh")
+player = NodePath("../..")
+
+[node name="Dash" type="Node2D" parent="States"]
+
+[node name="Death" type="Node2D" parent="States"]
