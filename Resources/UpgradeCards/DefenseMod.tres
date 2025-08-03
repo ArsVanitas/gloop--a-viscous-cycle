@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="UpgradeCardResource" load_steps=3 format=3 uid="uid://bjdvmqgkvswgp"]
 
-[ext_resource type="Texture2D" uid="uid://cxlqh3pmh62sn" path="res://Assets/Temp/slime_body.png" id="1_yv46e"]
+[ext_resource type="Texture2D" uid="uid://8vkhe0cv6yvl" path="res://Assets/UI/Icons/Icons6.png" id="1_yv46e"]
 [ext_resource type="Script" uid="uid://cbm1drwv2km8u" path="res://Scripts/UpgradeCardRes.gd" id="2_8h2a6"]
 
 [resource]
 script = ExtResource("2_8h2a6")
-title = "Defensive Crust"
+title = "Crusty Coat"
 texture = ExtResource("1_yv46e")
-description = "Defense +5"
+description = "Defense UP"
 icon = ExtResource("1_yv46e")
-stat_name = "Defense"
+stat = 0
 amount = 5
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

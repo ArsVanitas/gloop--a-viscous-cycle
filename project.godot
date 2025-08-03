@@ -13,7 +13,14 @@ config_version=5
 config/name="Gloop: A Viscous Cycle"
 run/main_scene="uid://c51t5045ekoyl"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://4vnxcfy0ttfn"
 config/icon="uid://b20mv0h82357q"
+
+[autoload]
+
+GlobalPlayerStats="*res://Scripts/Global/GlobalPlayerStats.gd"
+GlobalEnemyStats="*res://Scripts/Global/GlobalEnemyStats.gd"
+GlobalUpgradeCards="*res://Scripts/Global/UpgradeCards.gd"
 
 [display]
 

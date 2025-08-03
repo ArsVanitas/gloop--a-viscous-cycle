@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuybst0hgur68"]
+
+[ext_resource type="Script" uid="uid://bo64imq2h1wki" path="res://Scenes/World/test_00.gd" id="1_f6xo6"]
+[ext_resource type="PackedScene" uid="uid://crbds6urpt61t" path="res://Scenes/UI/pause_menu.tscn" id="1_o0rqd"]
+[ext_resource type="PackedScene" uid="uid://dn48uh7ua5u5s" path="res://Scenes/Player/player.tscn" id="2_4x4ym"]
+[ext_resource type="PackedScene" uid="uid://cskj27umilv0i" path="res://Scenes/World/canister.tscn" id="2_rx13d"]
+[ext_resource type="PackedScene" uid="uid://bhssg8crf4j4x" path="res://Scenes/Enemy/enemy.tscn" id="3_tq8e4"]
+[ext_resource type="Texture2D" uid="uid://dn8uceua6el3t" path="res://Assets/World/Background_Arenawall_2.png" id="4_o0rqd"]
+[ext_resource type="Texture2D" uid="uid://s6askao6ujtg" path="res://Assets/World/Background_Arena_2.png" id="5_f6xo6"]
+[ext_resource type="Theme" uid="uid://yo3krgw5tl7d" path="res://Resources/FontFull.tres" id="6_d6gbn"]
+
+[node name="Test00" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_f6xo6")
+
+[node name="Canister" parent="." instance=ExtResource("2_rx13d")]
+unique_name_in_owner = true
+position = Vector2(321, 12)
+collision_mask = 15
+
+[node name="Player" parent="." instance=ExtResource("2_4x4ym")]
+position = Vector2(316, 192)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="Enemy" parent="." instance=ExtResource("3_tq8e4")]
+position = Vector2(566, 105)
+
+[node name="Borders" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders"]
+build_mode = 1
+polygon = PackedVector2Array(-312, 72, -280, 144, -216, 208, -128, 272, -32, 312, 72, 344, 216, 368, 416, 368, 576, 344, 704, 304, 816, 240, 896, 168, 928, 120, 952, 64, 960, 0, 952, -56, 920, -120, 864, -184, 744, -264, 616, -312, 472, -344, 320, -352, 184, -344, 56, -320, -80, -272, -192, -208, -280, -120, -312, -48, -320, 0)
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("1_o0rqd")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="StatDisplay" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 7.0
+offset_top = 27.0
+offset_right = 47.0
+offset_bottom = 67.0
+theme = ExtResource("6_d6gbn")
+text = "1"
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -709.0
+offset_right = 320.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.237539, 0.237539, 0.237539, 1)
+
+[node name="ArenaWall" type="TextureRect" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -1069.0
+offset_right = 640.0
+offset_bottom = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_o0rqd")
+
+[node name="Arena" type="TextureRect" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_top = -349.0
+offset_right = 640.0
+offset_bottom = 371.0
+grow_horizontal = 2
+texture = ExtResource("5_f6xo6")
+
+[connection signal="canister_activated" from="." to="Canister" method="_on_canister_activated"]

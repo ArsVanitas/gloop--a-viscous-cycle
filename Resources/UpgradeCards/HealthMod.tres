@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeCardResource" load_steps=3 format=3 uid="uid://dqor5s71xeuyn"]
+
+[ext_resource type="Script" uid="uid://cbm1drwv2km8u" path="res://Scripts/UpgradeCardRes.gd" id="1_27osn"]
+[ext_resource type="Texture2D" uid="uid://dhlwoxlqtj0cp" path="res://Assets/UI/Icons/Icons5.png" id="1_w53el"]
+
+[resource]
+script = ExtResource("1_27osn")
+title = "Thicker Gel"
+texture = ExtResource("1_w53el")
+description = "Health UP"
+icon = ExtResource("1_w53el")
+stat = 0
+amount = 0
+metadata/_custom_type_script = "uid://cbm1drwv2km8u"

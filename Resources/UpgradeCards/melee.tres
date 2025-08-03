@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeCardResource" load_steps=3 format=3 uid="uid://cj08pkhjyuark"]
+
+[ext_resource type="Texture2D" uid="uid://cqgjacqsxv0j0" path="res://Assets/UI/Icons/Icons12.png" id="1_hfyhm"]
+[ext_resource type="Script" uid="uid://cbm1drwv2km8u" path="res://Scripts/UpgradeCardRes.gd" id="2_2jp6l"]
+
+[resource]
+script = ExtResource("2_2jp6l")
+title = "Gel Force One"
+texture = ExtResource("1_hfyhm")
+description = "Melee Damage UP"
+icon = ExtResource("1_hfyhm")
+stat = 0
+amount = 0
+metadata/_custom_type_script = "uid://cbm1drwv2km8u"

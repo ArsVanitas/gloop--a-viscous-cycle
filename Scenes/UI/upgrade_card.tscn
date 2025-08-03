@@ -1,74 +1,48 @@
 [gd_scene load_steps=11 format=3 uid="uid://cwp6ikt5r6byo"]
 
 [ext_resource type="Script" uid="uid://bm36nwcym6tar" path="res://Scenes/UI/upgrade_card.gd" id="1_yvd15"]
-[ext_resource type="Resource" uid="uid://bjdvmqgkvswgp" path="res://Resources/UpgradeCards/DefenseMod.tres" id="2_t8bxp"]
 [ext_resource type="Texture2D" uid="uid://c3ks1x7p0dm8g" path="res://icon.svg" id="3_djitu"]
 [ext_resource type="Texture2D" uid="uid://xcv46disoste" path="res://Assets/UI/Card2.png" id="3_kwxxa"]
 [ext_resource type="Theme" uid="uid://yo3krgw5tl7d" path="res://Resources/FontFull.tres" id="3_t8bxp"]
 [ext_resource type="Texture2D" uid="uid://qmjdh7vrnq55" path="res://Assets/UI/Card1.png" id="4_midfj"]
 [ext_resource type="Texture2D" uid="uid://c6vsld7yrbp23" path="res://Assets/UI/Card3.png" id="4_ua3pj"]
+[ext_resource type="Resource" uid="uid://j6yn83y8k08p" path="res://Resources/UpgradeCards/rangedmg.tres" id="5_si1xg"]
 [ext_resource type="Texture2D" uid="uid://fm5hml4m7qc7" path="res://Assets/UI/Card4.png" id="7_ua3pj"]
 [ext_resource type="FontFile" uid="uid://bpdn6yhb1bfkx" path="res://Assets/Fonts/edit-undo.line-brk.ttf" id="9_si1xg"]
 
 [sub_resource type="Theme" id="Theme_pmi3y"]
 default_font = ExtResource("9_si1xg")
 
-[node name="UpgradeCard" type="Control"]
-texture_filter = 1
-custom_minimum_size = Vector2(80, 140)
-layout_mode = 3
+[node name="UpgradeCard" type="TextureButton"]
+custom_minimum_size = Vector2(100, 150)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -79.0
-offset_right = 50.0
-offset_bottom = 65.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_t8bxp")
-script = ExtResource("1_yvd15")
-card = ExtResource("2_t8bxp")
-
-[node name="Card" type="NinePatchRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-region_rect = Rect2(0, 0, 64, 112)
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-metadata/_edit_lock_ = true
-
-[node name="CardButton" type="TextureButton" parent="Card"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_kwxxa")
 texture_pressed = ExtResource("4_ua3pj")
 texture_hover = ExtResource("4_midfj")
 stretch_mode = 0
-metadata/_edit_lock_ = true
+script = ExtResource("1_yvd15")
+card_res = ExtResource("5_si1xg")
 
-[node name="CardName" type="RichTextLabel" parent="Card/CardButton"]
+[node name="CardName" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 6.0
-offset_top = 7.0
-offset_right = -6.0
-offset_bottom = 23.0
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.0466667
+anchor_right = 0.94
+anchor_bottom = 0.16
+offset_bottom = -1.0
 grow_horizontal = 2
 mouse_filter = 2
 theme = ExtResource("3_t8bxp")
@@ -76,8 +50,9 @@ text = "1"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="NinePatchRect" parent="Card/CardButton"]
+[node name="TextureRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,7 +71,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Texture" type="TextureRect" parent="Card/CardButton/TextureRect"]
+[node name="Texture" type="TextureRect" parent="TextureRect"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -115,7 +90,7 @@ texture = ExtResource("3_djitu")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Description" type="RichTextLabel" parent="Card/CardButton"]
+[node name="Description" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -131,5 +106,3 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[connection signal="pressed" from="Card/CardButton" to="." method="_on_card_button_pressed"]

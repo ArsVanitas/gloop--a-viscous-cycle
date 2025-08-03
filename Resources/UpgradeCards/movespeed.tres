@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeCardResource" load_steps=3 format=3 uid="uid://debcu8d4i3tnm"]
+
+[ext_resource type="Texture2D" uid="uid://cpswwekuxb4g4" path="res://Assets/UI/Icons/Icons8.png" id="1_764kb"]
+[ext_resource type="Script" uid="uid://cbm1drwv2km8u" path="res://Scripts/UpgradeCardRes.gd" id="2_5x6b1"]
+
+[resource]
+script = ExtResource("2_5x6b1")
+title = "Bipedalism"
+texture = ExtResource("1_764kb")
+description = "Move Speed UP"
+icon = ExtResource("1_764kb")
+stat = 0
+amount = 0
+metadata/_custom_type_script = "uid://cbm1drwv2km8u"
