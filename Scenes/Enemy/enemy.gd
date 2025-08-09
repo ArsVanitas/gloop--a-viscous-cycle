@@ -15,7 +15,6 @@ class_name Enemy
 	set(new_value):
 		detect_radius = new_value
 		%Radius.shape.radius = detect_radius
-@onready var sprite = $EnemySprite
 @onready var slash_vfx = $Slash
 var health:
 	set(new_value):
@@ -25,13 +24,21 @@ var health:
 		if health <= 0:
 			health_depleted.emit()
 			%DetectionRange.monitoring = false
-			splat()
+			death_splat()
+var evo = GlobalEnemyStats.evolution
 
 signal health_depleted
 
 func _ready() -> void:
 	health = stats.health
 	%Radius.shape.radius = detect_radius
+	match evo:
+		1: %EnemySprite.texture = Sprites["base"]
+		2: %EnemySprite.texture = Sprites["evo2"]
+		3: %EnemySprite.texture = Sprites["evo3"]
+		4: %EnemySprite.texture = Sprites["evo4"]
+	if evo >= 5: %EnemySprite.texture = Sprites["SlimeViola"]
+
 
 func _process(delta: float) -> void:
 	if velocity.x < 0:
@@ -44,7 +51,7 @@ func _process(delta: float) -> void:
 func take_damage(amount):
 	health -= amount
 
-func splat():
+func death_splat():
 	queue_free()
 	const DEATH_SPLAT = preload("res://Scenes/death_splat.tscn")
 	var splat = DEATH_SPLAT.instantiate()

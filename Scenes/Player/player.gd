@@ -13,7 +13,7 @@ var health:
 		healthbar.max_value = GlobalPlayerStats.max_hp
 		healthbar.value = health
 		if health <= 0:
-			splat()
+			death_splat()
 			health_depleted.emit()
 
 var defense
@@ -25,7 +25,10 @@ var size:
 		scale.y = size
 var ranged_damage
 var attack_range
-var attack_speed
+var attack_speed:
+	set(new_value):
+		attack_speed = new_value
+		%ShootTimer.wait_time = (0.5 / attack_speed)
 var melee_damage
 
 signal health_depleted
@@ -80,7 +83,7 @@ func _process(delta: float) -> void:
 func take_damage(amount):
 	health -= amount / defense
 
-func splat():
+func death_splat():
 	const DEATH_SPLAT = preload("res://Scenes/death_splat.tscn")
 	var splat = DEATH_SPLAT.instantiate()
 	add_sibling(splat)

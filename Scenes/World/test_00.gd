@@ -27,7 +27,8 @@ func _on_canister_upgrade_picked() -> void:
 	var enemy = ENEMY.instantiate()
 	enemy.global_position = canister.global_position
 	%Enemies.add_child(enemy)
-	$Player.health += GlobalPlayerStats.max_hp / 2
+	$Player.health += int(GlobalPlayerStats.max_hp / 2)
+	GlobalEnemyStats.evolution += 1
 
 func _on_player_health_depleted() -> void:
 	%PauseMenu.player_death()

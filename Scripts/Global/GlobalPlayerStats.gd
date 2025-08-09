@@ -9,7 +9,7 @@ static var size : float = 1
 
 static var ranged_damage : int = 5
 static var attack_range : int = 300
-static var attack_speed : int = 1
+static var attack_speed : float = 1.0
 static var melee_damage : int = 10
 
 @export var can_dash : bool = false
@@ -32,7 +32,7 @@ func _ready() -> void:
 	move_speed = 200
 	size = 1
 
-	ranged_damage = 5
+	ranged_damage = 100
 	attack_range = 300
 	attack_speed = 1
 	melee_damage = 10
@@ -40,5 +40,5 @@ func _ready() -> void:
 func take_damage(amount : int):
 	health -= amount
 
-func update(stat, amount):
-	stat += amount
+#func update(stat, amount):
+	#stat += amount

@@ -23,7 +23,7 @@ func _on_test_00_stage_clear() -> void:
 	canister_play("show")
 	%InteractArea.monitoring = true
 
-func _on_interact_area_body_entered(Player) -> void:
+func _on_interact_area_body_entered(body: Player) -> void:
 	can_touch = true
 
 func _on_interact_area_body_exited(body: Node2D) -> void:
