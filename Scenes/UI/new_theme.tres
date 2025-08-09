@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://byp663m3rwxxh"]
+
+[ext_resource type="FontFile" uid="uid://bps7dbggrhvgn" path="res://Assets/Fonts/edit-undo.brk.ttf" id="1_2y5ie"]
+
+[resource]
+default_font = ExtResource("1_2y5ie")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
