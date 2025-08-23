@@ -25,26 +25,27 @@ var health:
 			health_depleted.emit()
 			%DetectionRange.monitoring = false
 			death_splat()
-var evo = GlobalEnemyStats.evolution
+var evo
 
 signal health_depleted
 
 func _ready() -> void:
 	health = stats.health
+	evo = GlobalEnemyStats.evolution
 	%Radius.shape.radius = detect_radius
 	match evo:
-		1: %EnemySprite.texture = Sprites["base"]
-		2: %EnemySprite.texture = Sprites["evo2"]
-		3: %EnemySprite.texture = Sprites["evo3"]
-		4: %EnemySprite.texture = Sprites["evo4"]
-	if evo >= 5: %EnemySprite.texture = Sprites["SlimeViola"]
+		1, 2: %EnemySprite.texture = Sprites["base"]
+		3, 4: %EnemySprite.texture = Sprites["evo2"]
+		5, 6: %EnemySprite.texture = Sprites["evo3"]
+		7, 8: %EnemySprite.texture = Sprites["evo4"]
+	if evo >= 9: %EnemySprite.texture = Sprites["SlimeViola"]
 
 
 func _process(delta: float) -> void:
-	if velocity.x < 0:
+	if velocity.x < 0 or (%CrosshairMark.global_position.x - global_position.x) < 0:
 		$EnemySprite.flip_h = true
 		#$Slash.flip_h = true
-	elif velocity.x > 0:
+	if velocity.x > 0 or (%CrosshairMark.global_position.x - global_position.x) > 0:
 		$EnemySprite.flip_h = false
 		#$Slash.flip.h = false
 

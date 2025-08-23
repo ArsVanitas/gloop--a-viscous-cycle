@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf6orvkb3kumg"]
+[gd_scene load_steps=14 format=3 uid="uid://cf6orvkb3kumg"]
 
 [ext_resource type="Script" uid="uid://q5t2c31w1j6y" path="res://Scenes/World/upgrade_menu.gd" id="1_7giqg"]
 [ext_resource type="Texture2D" uid="uid://fm5hml4m7qc7" path="res://Assets/UI/Card4.png" id="2_6i826"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://debcu8d4i3tnm" path="res://Resources/UpgradeCards/movespeed.tres" id="7_opq14"]
 [ext_resource type="Resource" uid="uid://4s8g3jm005df" path="res://Resources/UpgradeCards/attackspeed.tres" id="9_rumwm"]
 [ext_resource type="Resource" uid="uid://cpeqbw4ridn4r" path="res://Resources/UpgradeCards/size.tres" id="11_cqbmj"]
+[ext_resource type="AudioStream" uid="uid://cqb0ev1f4nmhu" path="res://Assets/Audio/Sounds/607208__fupicat__fweeng-reverb.wav" id="13_cqbmj"]
 
 [node name="UpgradeMenu" type="CanvasLayer"]
 script = ExtResource("1_7giqg")
@@ -98,6 +99,12 @@ card_res = ExtResource("7_opq14")
 visible = false
 layout_mode = 2
 card_res = ExtResource("11_cqbmj")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_cqbmj")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="pressed" from="NinePatchRect/MarginContainer/Cards/HP" to="." method="_on_hp_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/Cards/Def" to="." method="_on_def_pressed"]

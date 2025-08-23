@@ -2,11 +2,9 @@ extends Control
 
 @onready var player_dead : bool = false
 
-
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	hide()
-
 
 func _process(_delta: float) -> void:
 	Menu()
@@ -16,12 +14,10 @@ func resume():
 	$AnimationPlayer.play_backwards("pause")
 	hide()
 
-
 func pause():
 	get_tree().paused = true
 	$AnimationPlayer.play("pause")
 	show()
-
 
 func Menu():
 	if Input.is_action_just_pressed("menu") and !get_tree().paused:
@@ -41,6 +37,7 @@ func _on_resume_pressed() -> void:
 func _on_restart_pressed() -> void:
 	resume()
 	get_tree().reload_current_scene()
+	GlobalEnemyStats.evolution = 1
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

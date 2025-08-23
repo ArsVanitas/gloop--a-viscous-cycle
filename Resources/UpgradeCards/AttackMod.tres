@@ -8,6 +8,6 @@ script = ExtResource("1_01ni4")
 title = "Attack Mod"
 texture = ExtResource("2_mjfvl")
 description = "Damage +10"
-stat = 1
+stat = 5
 amount = 10
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

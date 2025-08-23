@@ -293,11 +293,10 @@ _data = {
 &"walk": SubResource("Animation_oikmp")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_a3d8c")
-stats = NodePath("Stats")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -353,9 +352,10 @@ player = NodePath("../..")
 fsm = NodePath("..")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="Shoot" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("player", "fsm", "animator")]
+[node name="Shoot" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("movement", "player", "fsm", "animator")]
 unique_name_in_owner = true
 script = ExtResource("5_dd0ac")
+movement = NodePath("../Movement")
 player = NodePath("../..")
 fsm = NodePath("..")
 animator = NodePath("../../AnimationPlayer")
@@ -427,6 +427,9 @@ libraries = {
 [node name="Stats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("13_06tpx")
+
+[node name="DashCD" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [connection signal="health_depleted" from="." to="." method="_on_health_depleted"]
 [connection signal="body_entered" from="MeleeHitbox" to="StateMachine/Melee" method="_on_melee_hitbox_body_entered"]

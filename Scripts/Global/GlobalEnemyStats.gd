@@ -1,6 +1,9 @@
 extends Node
 class_name EnemyStats
 
+var stat: GlobalPlayerStats.PlayerStat
+@export var UPGRADES : Array = []
+
 static var max_hp : int = 100
 static var health : int = 100
 static var defense : int = 10
@@ -13,7 +16,7 @@ static var melee_damage : int = 10
 
 static var can_dash : bool = false
 
-static var evolution : int
+var evolution : int
 
 signal enemy_evolve
 

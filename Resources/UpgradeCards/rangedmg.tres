@@ -8,6 +8,6 @@ script = ExtResource("1_hoewe")
 title = "Toxic Blobs"
 texture = ExtResource("2_kg1ba")
 description = "Ranged Damage UP"
-stat = 1
+stat = 6
 amount = 10
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

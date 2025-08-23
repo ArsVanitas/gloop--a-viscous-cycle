@@ -23,8 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pivot.look_at(player.position)
 	current_state.Update(delta)
-	#print(current_state)
-	#print($"..".velocity)
 	if body.velocity.length() > 0:
 		animator.play("walk")
 	else:

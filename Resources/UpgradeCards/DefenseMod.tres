@@ -9,6 +9,6 @@ title = "Crusty Coat"
 texture = ExtResource("1_yv46e")
 description = "Defense UP"
 icon = ExtResource("1_yv46e")
-stat = 0
+stat = 2
 amount = 5
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

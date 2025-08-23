@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @export var animator : AnimationPlayer
+@onready var spawner = %Spawner
 var can_touch : bool = false
 
 signal upgrade_picked
@@ -19,8 +20,9 @@ func _on_canister_activated() -> void:
 		upgrade(2)
 
 func _on_test_00_stage_clear() -> void:
-	show()
 	canister_play("show")
+	await %AnimationPlayer.animation_finished
+	canister_play("flash_loop")
 	%InteractArea.monitoring = true
 
 func _on_interact_area_body_entered(body: Player) -> void:
@@ -30,8 +32,7 @@ func _on_interact_area_body_exited(body: Node2D) -> void:
 	can_touch = false
 	
 func _on_upgrade_menu_upgrade_picked() -> void:
-	upgrade_picked.emit()
-	canister_play("hide")
-	%InteractArea.monitoring = false
+	%AnimationPlayer.play("flash")
 	await %AnimationPlayer.animation_finished
-	hide()
+	upgrade_picked.emit()
+	%InteractArea.monitoring = false

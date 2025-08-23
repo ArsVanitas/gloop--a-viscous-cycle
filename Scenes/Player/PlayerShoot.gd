@@ -1,6 +1,7 @@
 extends State
 class_name PlayerShoot
 
+@export var movement : MoveState
 const projectile_node = preload("uid://brp8wx0p1udkj")
 @onready var shoot_timer = %ShootTimer
 var attack_speed:
@@ -40,7 +41,9 @@ func Update(delta):
 	if Input.is_action_just_released("shoot"):
 		await animator.animation_finished
 		state_transition.emit(self, fsm.idle)
-
+	
+	if player.stats.SETS.has(GlobalPlayerStats.Set.MOBILE):
+		movement.Update(delta)
 
 func shoot():
 	animator.play("shoot", -1, attack_speed)

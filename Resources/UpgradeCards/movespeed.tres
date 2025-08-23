@@ -9,6 +9,6 @@ title = "Bipedalism"
 texture = ExtResource("1_764kb")
 description = "Move Speed UP"
 icon = ExtResource("1_764kb")
-stat = 0
+stat = 5
 amount = 0
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"
