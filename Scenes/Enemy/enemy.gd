@@ -16,6 +16,11 @@ class_name Enemy
 		detect_radius = new_value
 		%Radius.shape.radius = detect_radius
 @onready var slash_vfx = $Slash
+@onready var size = GlobalEnemyStats.size:
+	set(new):
+		size = new
+		scale.x = size
+		scale.y = size
 var health:
 	set(new_value):
 		health = new_value
@@ -30,7 +35,7 @@ var evo
 signal health_depleted
 
 func _ready() -> void:
-	health = stats.health
+	health = stats.max_hp
 	evo = GlobalEnemyStats.evolution
 	%Radius.shape.radius = detect_radius
 	match evo:
@@ -39,6 +44,7 @@ func _ready() -> void:
 		5, 6: %EnemySprite.texture = Sprites["evo3"]
 		7, 8: %EnemySprite.texture = Sprites["evo4"]
 	if evo >= 9: %EnemySprite.texture = Sprites["SlimeViola"]
+	size = GlobalEnemyStats.size
 
 
 func _process(delta: float) -> void:

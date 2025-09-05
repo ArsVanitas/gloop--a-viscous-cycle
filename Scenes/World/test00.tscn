@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuybst0hgur68"]
+[gd_scene load_steps=15 format=3 uid="uid://cuybst0hgur68"]
 
 [ext_resource type="Script" uid="uid://bo64imq2h1wki" path="res://Scenes/World/test_00.gd" id="1_f6xo6"]
 [ext_resource type="PackedScene" uid="uid://crbds6urpt61t" path="res://Scenes/UI/pause_menu.tscn" id="1_o0rqd"]
 [ext_resource type="PackedScene" uid="uid://dn48uh7ua5u5s" path="res://Scenes/Player/player.tscn" id="2_4x4ym"]
 [ext_resource type="PackedScene" uid="uid://cskj27umilv0i" path="res://Scenes/World/canister.tscn" id="2_rx13d"]
+[ext_resource type="Script" uid="uid://gj2ec4vqgyf4" path="res://Scenes/World/camera.gd" id="4_esnwq"]
 [ext_resource type="Texture2D" uid="uid://dn8uceua6el3t" path="res://Assets/World/Background_Arenawall_2.png" id="4_o0rqd"]
 [ext_resource type="Texture2D" uid="uid://s6askao6ujtg" path="res://Assets/World/Background_Arena_2.png" id="5_f6xo6"]
 [ext_resource type="Texture2D" uid="uid://cyw1ad6ldvtdd" path="res://Assets/UI/Icons/Icons1.png" id="6_5cgaw"]
 [ext_resource type="Theme" uid="uid://yo3krgw5tl7d" path="res://Resources/FontFull.tres" id="6_d6gbn"]
 [ext_resource type="AudioStream" uid="uid://c3vx1qrr8rxhx" path="res://Assets/Audio/Sounds/332919__cooltron__winlevel.wav" id="9_5cgaw"]
-[ext_resource type="AudioStream" uid="uid://lhvjsp5aehgp" path="res://Assets/Audio/AbsoluteGloopanza.ogg" id="9_tvhtq"]
+[ext_resource type="AudioStream" uid="uid://rosg6giu7gha" path="res://Assets/Audio/Gloop Combat_1.ogg" id="9_esnwq"]
 
 [sub_resource type="Animation" id="Animation_tvhtq"]
 length = 0.001
@@ -123,8 +124,10 @@ collision_mask = 15
 [node name="Player" parent="." instance=ExtResource("2_4x4ym")]
 position = Vector2(-2, -137)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
+script = ExtResource("4_esnwq")
+player = NodePath("..")
 
 [node name="UpgradeManager" type="Node" parent="Player"]
 
@@ -215,6 +218,7 @@ expand_mode = 1
 z_index = -2
 
 [node name="ColorRect" type="ColorRect" parent="Arena"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -235,8 +239,25 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -640.0
+offset_top = -0.540466
 offset_right = 640.0
-offset_bottom = 719.993
+offset_bottom = 719.453
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_o0rqd")
+
+[node name="ArenaWall2" type="TextureRect" parent="Arena/ArenaWall"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -1103.99
+offset_right = 640.0
+offset_bottom = -384.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_o0rqd")
@@ -274,7 +295,7 @@ shadow_color = Color(0, 0, 0, 0.686275)
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-stream = ExtResource("9_tvhtq")
+stream = ExtResource("9_esnwq")
 volume_db = -10.0
 bus = &"SFX"
 parameters/looping = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dn48uh7ua5u5s"]
+[gd_scene load_steps=28 format=3 uid="uid://dn48uh7ua5u5s"]
 
 [ext_resource type="Script" uid="uid://dio3qtrcp825d" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://c2k1qn4h8xfr3" path="res://Assets/VFX/shadow.png" id="2_74mp2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bhl5h4lyc40g7" path="res://Assets/UI/HPbar2.png" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://wxkpb6hlr6dy" path="res://Scenes/Player/PlayerMelee.gd" id="9_oikmp"]
 [ext_resource type="Script" uid="uid://c7wts7uqfpj1y" path="res://Scripts/Global/GlobalPlayerStats.gd" id="13_06tpx"]
+[ext_resource type="AudioStream" uid="uid://byylr2d4bvw1" path="res://Assets/Audio/Sounds/8bit-damage7.wav" id="16_r5xpd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a3d8c"]
 radius = 18.0
@@ -216,10 +217,10 @@ tracks/3/path = NodePath("MeleeHitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_dey5f"]
@@ -330,7 +331,6 @@ hframes = 3
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox"]
-visible = false
 position = Vector2(16, -36.5)
 shape = SubResource("RectangleShape2D_ks1b7")
 disabled = true
@@ -430,6 +430,12 @@ script = ExtResource("13_06tpx")
 
 [node name="DashCD" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_r5xpd")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="health_depleted" from="." to="." method="_on_health_depleted"]
 [connection signal="body_entered" from="MeleeHitbox" to="StateMachine/Melee" method="_on_melee_hitbox_body_entered"]

@@ -6,6 +6,8 @@ class_name Player
 @onready var healthbar = %HealthBar
 @onready var pivot = %CrosshairMark
 @onready var crosshair = %Crosshair
+@onready var sfx_player: AudioStreamPlayer = %SFXPlayer
+
 
 @onready var health = stats.health:
 	set(new_value):
@@ -75,3 +77,8 @@ func death_splat():
 	add_sibling(splat)
 	splat.global_position = global_position
 	%PlayerSprite.visible = false
+
+func freeze_frame(timescale: float, duration: float) -> void:
+	Engine.time_scale = timescale
+	await get_tree().create_timer(duration, true, false, true).timeout
+	Engine.time_scale = 1

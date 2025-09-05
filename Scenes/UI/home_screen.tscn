@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dtc57ukxghliq" path="res://Assets/UI/Startpressed.png" id="6_18cjy"]
 [ext_resource type="Texture2D" uid="uid://dbce2u7xg18nu" path="res://Assets/UI/Exit.png" id="7_aa1gm"]
 [ext_resource type="Texture2D" uid="uid://c53t53vmx18t" path="res://Assets/UI/ExitPressed.png" id="8_cyuhf"]
-[ext_resource type="AudioStream" uid="uid://dd0ud0w0vwvsa" path="res://Assets/Audio/Project_25.ogg" id="9_a2gnv"]
+[ext_resource type="AudioStream" uid="uid://dvrltfgrxv21i" path="res://Assets/Audio/Welcome to VISCORP.ogg" id="9_a2gnv"]
 
 [sub_resource type="Animation" id="Animation_18cjy"]
 length = 0.001

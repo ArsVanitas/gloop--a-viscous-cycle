@@ -6,6 +6,7 @@ const LVL00_MUSIC = preload("res://Assets/Audio/AbsoluteGloopanza.ogg")
 const ENEMY = preload("res://Scenes/Enemy/enemy.tscn")
 @onready var audio: AudioStreamPlayer = %MusicPlayer
 @onready var animator: AnimationPlayer = %AnimationPlayer
+@onready var camera: Camera2D = $Player/Camera2D
 
 @onready var canister = %Canister
 var statement : String
@@ -16,6 +17,7 @@ signal canister_activated
 
 func _ready() -> void:
 	GlobalPlayerStats._ready()
+	GlobalEnemyStats._ready()
 	initialize_level()
 
 func _process(delta: float) -> void:
@@ -51,6 +53,7 @@ func spawn_enemy():
 	var enemy = ENEMY.instantiate()
 	enemy.global_position = canister.spawner.global_position
 	%Enemies.add_child(enemy)
+	camera.get_enemy_pos()
 	canister.canister_play("close")
 	await canister.animator.animation_finished
 	canister.canister_play("hide")

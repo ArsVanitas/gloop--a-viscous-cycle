@@ -39,6 +39,7 @@ func hide_upgrade_menu():
 	sfx_player.play()
 	print("Player: ", GlobalPlayerStats.UPGRADES)
 	print("Enemy: ", GlobalEnemyStats.UPGRADES)
+	GlobalEnemyStats.update()
 	GlobalPlayerStats.check_set()
 
 func _on_hp_pressed() -> void:

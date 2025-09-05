@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://nbpxwfp5jm07"]
 
-[ext_resource type="Script" uid="uid://inokorfr8mup" path="res://death.gd" id="1_aek4n"]
+[ext_resource type="Script" uid="uid://inokorfr8mup" path="res://death_splat.gd" id="1_aek4n"]
 [ext_resource type="Texture2D" uid="uid://n0f1c2v0b6fu" path="res://Assets/Characters/Death_animation.png" id="2_srw45"]
 
 [sub_resource type="Animation" id="Animation_hgceg"]
