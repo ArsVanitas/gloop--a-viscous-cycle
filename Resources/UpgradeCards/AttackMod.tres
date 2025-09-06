@@ -9,5 +9,5 @@ title = "Attack Mod"
 texture = ExtResource("2_mjfvl")
 description = "Damage +10"
 stat = 5
-amount = 10
+amount = 0
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

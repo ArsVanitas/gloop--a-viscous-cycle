@@ -43,7 +43,6 @@ func hide_upgrade_menu():
 	GlobalPlayerStats.check_set()
 
 func _on_hp_pressed() -> void:
-	#$NinePatchRect/MarginContainer/Cards/HP.add_upgrade()
 	GlobalPlayerStats.UPGRADES.append(GlobalPlayerStats.PlayerStat.Health)
 	GlobalEnemyStats.UPGRADES.erase(GlobalPlayerStats.PlayerStat.Health)
 	GlobalPlayerStats.max_hp += 50

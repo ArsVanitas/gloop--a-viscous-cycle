@@ -10,5 +10,5 @@ texture = ExtResource("1_2caqs")
 description = "Attack Speed UP"
 icon = ExtResource("1_2caqs")
 stat = 1
-amount = 0
+amount = 0.5
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

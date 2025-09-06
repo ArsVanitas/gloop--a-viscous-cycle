@@ -1,9 +1,7 @@
 extends StateMachine
 class_name EnemyBehavior
 
-@export var States: Dictionary = {
-	
-}
+@export var States: Dictionary = {}
 
 @export var init_state : State
 @export var animator : AnimationPlayer
@@ -32,6 +30,7 @@ func change_state(old_state : State, new_state : State):
 	old_state.Exit()
 	new_state.Enter()
 	current_state = new_state
+	print("Enemy State: ", current_state)
 
 func _on_detection_range_body_entered(body: Player) -> void:
 	if body.is_in_group("Player"):

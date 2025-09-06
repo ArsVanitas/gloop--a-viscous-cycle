@@ -10,5 +10,5 @@ texture = ExtResource("1_w53el")
 description = "Health UP"
 icon = ExtResource("1_w53el")
 stat = 3
-amount = 0
+amount = 50.0
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

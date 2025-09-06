@@ -16,6 +16,7 @@ class_name Enemy
 		detect_radius = new_value
 		%Radius.shape.radius = detect_radius
 @onready var slash_vfx = $Slash
+@onready var shooting_cd: Timer = %ShootingCD
 @onready var size = GlobalEnemyStats.size:
 	set(new):
 		size = new
@@ -45,6 +46,7 @@ func _ready() -> void:
 		7, 8: %EnemySprite.texture = Sprites["evo4"]
 	if evo >= 9: %EnemySprite.texture = Sprites["SlimeViola"]
 	size = GlobalEnemyStats.size
+	shooting_cd.wait_time = (0.5 / GlobalEnemyStats.attack_speed)
 
 
 func _process(delta: float) -> void:
@@ -56,7 +58,7 @@ func _process(delta: float) -> void:
 		#$Slash.flip.h = false
 
 func take_damage(amount):
-	health -= amount
+	health -= amount / GlobalEnemyStats.defense
 
 func death_splat():
 	queue_free()

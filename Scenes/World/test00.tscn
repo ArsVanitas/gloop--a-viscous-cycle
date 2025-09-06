@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://gj2ec4vqgyf4" path="res://Scenes/World/camera.gd" id="4_esnwq"]
 [ext_resource type="Texture2D" uid="uid://dn8uceua6el3t" path="res://Assets/World/Background_Arenawall_2.png" id="4_o0rqd"]
 [ext_resource type="Texture2D" uid="uid://s6askao6ujtg" path="res://Assets/World/Background_Arena_2.png" id="5_f6xo6"]
-[ext_resource type="Texture2D" uid="uid://cyw1ad6ldvtdd" path="res://Assets/UI/Icons/Icons1.png" id="6_5cgaw"]
 [ext_resource type="Theme" uid="uid://yo3krgw5tl7d" path="res://Resources/FontFull.tres" id="6_d6gbn"]
+[ext_resource type="Script" uid="uid://tu4jp1f5wf36" path="res://Scenes/UI/stat_grid.gd" id="7_1psex"]
 [ext_resource type="AudioStream" uid="uid://c3vx1qrr8rxhx" path="res://Assets/Audio/Sounds/332919__cooltron__winlevel.wav" id="9_5cgaw"]
 [ext_resource type="AudioStream" uid="uid://rosg6giu7gha" path="res://Assets/Audio/Gloop Combat_1.ogg" id="9_esnwq"]
 
@@ -139,80 +139,19 @@ unique_name_in_owner = true
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("1_o0rqd")]
 unique_name_in_owner = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="StatDisplay" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer"]
+[node name="Panel" type="PanelContainer" parent="StatDisplay"]
 offset_left = 7.0
 offset_top = 27.0
 offset_right = 7.0
 offset_bottom = 47.0
 
-[node name="StatDisplay" type="GridContainer" parent="CanvasLayer/Panel"]
+[node name="StatGrid" type="GridContainer" parent="StatDisplay/Panel"]
 layout_mode = 2
 theme = ExtResource("6_d6gbn")
 columns = 9
-
-[node name="Icon" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon2" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon3" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon4" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon5" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon6" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon7" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon8" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
-
-[node name="Icon9" type="TextureRect" parent="CanvasLayer/Panel/StatDisplay"]
-visible = false
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-texture = ExtResource("6_5cgaw")
-expand_mode = 1
+script = ExtResource("7_1psex")
 
 [node name="Arena" type="Node2D" parent="."]
 z_index = -2
@@ -239,9 +178,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -640.0
-offset_top = -0.540466
+offset_top = -0.644958
 offset_right = 640.0
-offset_bottom = 719.453
+offset_bottom = 719.349
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_o0rqd")

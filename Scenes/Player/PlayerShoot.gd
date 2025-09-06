@@ -51,6 +51,7 @@ func shoot():
 	projectile.attack_range = GlobalPlayerStats.attack_range
 	projectile.global_position = player.crosshair.global_position
 	projectile.global_rotation = player.crosshair.global_rotation
+	projectile.set_collision_mask_value(1, false)
 	add_child(projectile)
 	
 	fsm.can_shoot = false

@@ -10,5 +10,5 @@ texture = ExtResource("1_26tc3")
 description = "Range UP"
 icon = ExtResource("1_26tc3")
 stat = 0
-amount = 0
+amount = 50.0
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

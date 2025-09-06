@@ -54,7 +54,7 @@ func _ready() -> void:
 	move_speed = 200
 	size = 1
 
-	ranged_damage = 100
+	ranged_damage = 5
 	attack_range = 300
 	attack_speed = 1
 	melee_damage = 20

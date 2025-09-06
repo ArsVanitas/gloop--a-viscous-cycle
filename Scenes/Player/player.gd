@@ -42,7 +42,7 @@ var direction
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	defense = GlobalPlayerStats.defense
 	#move_speed = GlobalPlayerStats.move_speed
 	size = GlobalPlayerStats.size
@@ -77,8 +77,3 @@ func death_splat():
 	add_sibling(splat)
 	splat.global_position = global_position
 	%PlayerSprite.visible = false
-
-func freeze_frame(timescale: float, duration: float) -> void:
-	Engine.time_scale = timescale
-	await get_tree().create_timer(duration, true, false, true).timeout
-	Engine.time_scale = 1

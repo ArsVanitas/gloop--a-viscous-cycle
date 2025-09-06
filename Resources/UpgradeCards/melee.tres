@@ -10,5 +10,5 @@ texture = ExtResource("1_hfyhm")
 description = "Melee Damage UP"
 icon = ExtResource("1_hfyhm")
 stat = 4
-amount = 0
+amount = 10.0
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

@@ -12,3 +12,7 @@ preload("res://Resources/UpgradeCards/rangedmg.tres"),
 preload("res://Resources/UpgradeCards/scope.tres"),
 preload("res://Resources/UpgradeCards/size.tres"),
 ]
+
+var upg_res: Array = []
+
+signal upgrade(icon)

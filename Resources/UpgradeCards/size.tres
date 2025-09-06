@@ -10,5 +10,5 @@ texture = ExtResource("1_1w20m")
 description = "Size UP"
 icon = ExtResource("1_1w20m")
 stat = 7
-amount = 0
+amount = 0.5
 metadata/_custom_type_script = "uid://cbm1drwv2km8u"

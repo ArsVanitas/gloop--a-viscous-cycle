@@ -17,7 +17,7 @@ var StatDict : Dictionary = {
 @export var description : String
 @export var icon : Texture2D
 @export var stat : GlobalPlayerStats.PlayerStat
-@export var amount : int
+@export var amount : float
 
 #func add_upgrade(stat, amount):
 	#match stat:
