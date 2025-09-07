@@ -20,5 +20,7 @@ func Update(delta):
 
 func _on_melee_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
+		player.sfx_player.play()
+		GameManager.freeze_frame(0.0, 0.2)
 		body.take_damage(GlobalPlayerStats.melee_damage)
-		body.global_position += (body.global_position - player.global_position)
+		body.global_position = lerp(body.global_position, (body.global_position - player.global_position), 0.5)

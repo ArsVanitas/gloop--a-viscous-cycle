@@ -15,8 +15,13 @@ class_name Enemy
 	set(new_value):
 		detect_radius = new_value
 		%Radius.shape.radius = detect_radius
-@onready var sprite = $EnemySprite
 @onready var slash_vfx = $Slash
+@onready var shooting_cd: Timer = %ShootingCD
+@onready var size = GlobalEnemyStats.size:
+	set(new):
+		size = new
+		scale.x = size
+		scale.y = size
 var health:
 	set(new_value):
 		health = new_value
@@ -25,26 +30,37 @@ var health:
 		if health <= 0:
 			health_depleted.emit()
 			%DetectionRange.monitoring = false
-			splat()
+			death_splat()
+var evo
 
 signal health_depleted
 
 func _ready() -> void:
-	health = stats.health
+	health = stats.max_hp
+	evo = GlobalEnemyStats.evolution
 	%Radius.shape.radius = detect_radius
+	match evo:
+		1, 2: %EnemySprite.texture = Sprites["base"]
+		3, 4: %EnemySprite.texture = Sprites["evo2"]
+		5, 6: %EnemySprite.texture = Sprites["evo3"]
+		7, 8: %EnemySprite.texture = Sprites["evo4"]
+	if evo >= 9: %EnemySprite.texture = Sprites["SlimeViola"]
+	size = GlobalEnemyStats.size
+	shooting_cd.wait_time = (0.5 / GlobalEnemyStats.attack_speed)
+
 
 func _process(delta: float) -> void:
-	if velocity.x < 0:
+	if velocity.x < 0 or (%CrosshairMark.global_position.x - global_position.x) < 0:
 		$EnemySprite.flip_h = true
 		#$Slash.flip_h = true
-	elif velocity.x > 0:
+	if velocity.x > 0 or (%CrosshairMark.global_position.x - global_position.x) > 0:
 		$EnemySprite.flip_h = false
 		#$Slash.flip.h = false
 
 func take_damage(amount):
-	health -= amount
+	health -= amount / GlobalEnemyStats.defense
 
-func splat():
+func death_splat():
 	queue_free()
 	const DEATH_SPLAT = preload("res://Scenes/death_splat.tscn")
 	var splat = DEATH_SPLAT.instantiate()

@@ -1,14 +1,116 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuybst0hgur68"]
+[gd_scene load_steps=15 format=3 uid="uid://cuybst0hgur68"]
 
 [ext_resource type="Script" uid="uid://bo64imq2h1wki" path="res://Scenes/World/test_00.gd" id="1_f6xo6"]
 [ext_resource type="PackedScene" uid="uid://crbds6urpt61t" path="res://Scenes/UI/pause_menu.tscn" id="1_o0rqd"]
 [ext_resource type="PackedScene" uid="uid://dn48uh7ua5u5s" path="res://Scenes/Player/player.tscn" id="2_4x4ym"]
 [ext_resource type="PackedScene" uid="uid://cskj27umilv0i" path="res://Scenes/World/canister.tscn" id="2_rx13d"]
-[ext_resource type="PackedScene" uid="uid://bhssg8crf4j4x" path="res://Scenes/Enemy/enemy.tscn" id="3_tq8e4"]
+[ext_resource type="Script" uid="uid://gj2ec4vqgyf4" path="res://Scenes/World/camera.gd" id="4_esnwq"]
 [ext_resource type="Texture2D" uid="uid://dn8uceua6el3t" path="res://Assets/World/Background_Arenawall_2.png" id="4_o0rqd"]
 [ext_resource type="Texture2D" uid="uid://s6askao6ujtg" path="res://Assets/World/Background_Arena_2.png" id="5_f6xo6"]
 [ext_resource type="Theme" uid="uid://yo3krgw5tl7d" path="res://Resources/FontFull.tres" id="6_d6gbn"]
-[ext_resource type="AudioStream" uid="uid://lhvjsp5aehgp" path="res://Assets/Audio/AbsoluteGloopanza.ogg" id="9_tvhtq"]
+[ext_resource type="Script" uid="uid://tu4jp1f5wf36" path="res://Scenes/UI/stat_grid.gd" id="7_1psex"]
+[ext_resource type="AudioStream" uid="uid://c3vx1qrr8rxhx" path="res://Assets/Audio/Sounds/332919__cooltron__winlevel.wav" id="9_5cgaw"]
+[ext_resource type="AudioStream" uid="uid://rosg6giu7gha" path="res://Assets/Audio/Gloop Combat_1.ogg" id="9_esnwq"]
+
+[sub_resource type="Animation" id="Animation_tvhtq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arena/ArenaWall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-640, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lights/FullLit:blend_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d6gbn"]
+resource_name = "start"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arena/ArenaWall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Vector2(-640, 0), Vector2(-640, -720)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5, 3.5),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lights/FullLit:blend_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFXPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_5cgaw")
+}],
+"times": PackedFloat32Array(1.43333)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cgaw"]
+_data = {
+&"RESET": SubResource("Animation_tvhtq"),
+&"start": SubResource("Animation_d6gbn")
+}
 
 [node name="Test00" type="Node2D"]
 y_sort_enabled = true
@@ -16,51 +118,46 @@ script = ExtResource("1_f6xo6")
 
 [node name="Canister" parent="." instance=ExtResource("2_rx13d")]
 unique_name_in_owner = true
-visible = false
-position = Vector2(321, 12)
+position = Vector2(0, -20)
 collision_mask = 15
 
 [node name="Player" parent="." instance=ExtResource("2_4x4ym")]
-position = Vector2(316, 192)
+position = Vector2(-2, -137)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
 position_smoothing_enabled = true
+script = ExtResource("4_esnwq")
+player = NodePath("..")
+
+[node name="UpgradeManager" type="Node" parent="Player"]
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_tq8e4")]
-position = Vector2(566, 105)
-
-[node name="Borders" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 11
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders"]
-build_mode = 1
-polygon = PackedVector2Array(-312, 72, -280, 144, -216, 208, -128, 272, -32, 312, 72, 344, 216, 368, 416, 368, 576, 344, 704, 304, 816, 240, 896, 168, 928, 120, 952, 64, 960, 0, 952, -56, 920, -120, 864, -184, 744, -264, 616, -312, 472, -344, 320, -352, 184, -344, 56, -320, -80, -272, -192, -208, -280, -120, -312, -48, -320, 0)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("1_o0rqd")]
 unique_name_in_owner = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="StatDisplay" type="CanvasLayer" parent="."]
 
-[node name="StatDisplay" type="RichTextLabel" parent="CanvasLayer"]
+[node name="Panel" type="PanelContainer" parent="StatDisplay"]
 offset_left = 7.0
 offset_top = 27.0
-offset_right = 47.0
-offset_bottom = 67.0
+offset_right = 7.0
+offset_bottom = 47.0
+
+[node name="StatGrid" type="GridContainer" parent="StatDisplay/Panel"]
+layout_mode = 2
 theme = ExtResource("6_d6gbn")
-text = "1"
+columns = 9
+script = ExtResource("7_1psex")
 
-[node name="UI" type="CanvasLayer" parent="."]
-layer = -1
-follow_viewport_enabled = true
+[node name="Arena" type="Node2D" parent="."]
+z_index = -2
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
+[node name="ColorRect" type="ColorRect" parent="Arena"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,41 +171,85 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.237539, 0.237539, 0.237539, 1)
 
-[node name="ArenaWall" type="TextureRect" parent="UI"]
+[node name="ArenaWall" type="TextureRect" parent="Arena"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -640.0
-offset_top = -1069.0
+offset_top = -0.644958
 offset_right = 640.0
-offset_bottom = -349.0
+offset_bottom = 719.349
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_o0rqd")
 
-[node name="Arena" type="TextureRect" parent="UI"]
-anchors_preset = 5
+[node name="ArenaWall2" type="TextureRect" parent="Arena/ArenaWall"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -640.0
-offset_top = -349.0
+offset_top = -1103.99
 offset_right = 640.0
-offset_bottom = 371.0
+offset_bottom = -384.0
 grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_o0rqd")
+
+[node name="Arena" type="TextureRect" parent="Arena"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_f6xo6")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Borders" type="StaticBody2D" parent="Arena"]
+position = Vector2(-320, -12)
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/Borders"]
+build_mode = 1
+polygon = PackedVector2Array(-312, 72, -280, 144, -216, 208, -128, 272, -32, 312, 72, 344, 216, 368, 416, 368, 576, 344, 704, 304, 816, 240, 896, 168, 928, 120, 952, 64, 960, 0, 952, -56, 920, -120, 864, -184, 744, -264, 616, -312, 472, -344, 320, -352, 184, -344, 56, -320, -80, -272, -192, -208, -280, -120, -312, -48, -320, 0)
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="FullLit" type="DirectionalLight2D" parent="Lights"]
+energy = 0.1
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.686275)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 process_mode = 3
-stream = ExtResource("9_tvhtq")
+stream = ExtResource("9_esnwq")
 volume_db = -10.0
-autoplay = true
+bus = &"SFX"
 parameters/looping = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_5cgaw")
+}
 
 [connection signal="canister_activated" from="." to="Canister" method="_on_canister_activated"]
 [connection signal="stage_clear" from="." to="Canister" method="_on_test_00_stage_clear"]
 [connection signal="upgrade_picked" from="Canister" to="." method="_on_canister_upgrade_picked"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="child_exiting_tree" from="Enemies" to="." method="_on_enemies_child_exiting_tree"]
-[connection signal="health_depleted" from="Enemies/Enemy" to="." method="_on_enemy_health_depleted"]

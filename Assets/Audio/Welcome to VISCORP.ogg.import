@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dvrltfgrxv21i"
+path="res://.godot/imported/Welcome to VISCORP.ogg-2c93c17035b43d323e6bb9bbf793c9cc.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Welcome to VISCORP.ogg"
+dest_files=["res://.godot/imported/Welcome to VISCORP.ogg-2c93c17035b43d323e6bb9bbf793c9cc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

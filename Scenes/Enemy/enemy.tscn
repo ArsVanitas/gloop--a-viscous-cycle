@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bhssg8crf4j4x"]
+[gd_scene load_steps=25 format=3 uid="uid://bhssg8crf4j4x"]
 
 [ext_resource type="Script" uid="uid://cxky3gdrakv8w" path="res://Scenes/Enemy/enemy.gd" id="1_mw074"]
 [ext_resource type="Texture2D" uid="uid://nqeayy85ng25" path="res://Assets/Characters/Slime1.png" id="3_1vi6b"]
@@ -12,10 +12,14 @@
 [ext_resource type="Script" uid="uid://dlyifutkganda" path="res://Scripts/death.gd" id="8_kiqm3"]
 [ext_resource type="Texture2D" uid="uid://n0f1c2v0b6fu" path="res://Assets/Characters/Death_animation.png" id="12_beese"]
 [ext_resource type="Texture2D" uid="uid://ddwimkutpx4ga" path="res://Assets/UI/HPbar1.png" id="13_r1w2j"]
+[ext_resource type="AudioStream" uid="uid://byylr2d4bvw1" path="res://Assets/Audio/Sounds/8bit-damage7.wav" id="14_r1w2j"]
 [ext_resource type="Texture2D" uid="uid://bhl5h4lyc40g7" path="res://Assets/UI/HPbar2.png" id="14_u4wq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmwl5"]
-radius = 19.0263
+radius = 19.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vi6b"]
+radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2t2r4"]
 radius = 250.0
@@ -288,6 +292,7 @@ position = Vector2(0, 1)
 texture = ExtResource("3_2chwy")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -28)
 texture = ExtResource("3_1vi6b")
 hframes = 5
@@ -300,9 +305,16 @@ texture = ExtResource("4_1vi6b")
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_dmwl5")
+
+[node name="MeleeArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeArea"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_1vi6b")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -396,7 +408,12 @@ tint_progress = Color(1, 0.266667, 1, 1)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r1w2j")
+volume_db = -10.0
+
 [connection signal="health_depleted" from="." to="Behavior" method="_on_enemy_health_depleted"]
+[connection signal="body_entered" from="MeleeArea" to="Behavior/Attack" method="_on_melee_area_body_entered"]
 [connection signal="body_entered" from="DetectionRange" to="Behavior" method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="Behavior" method="_on_detection_range_body_exited"]
 [connection signal="timeout" from="ShootingCD" to="Behavior/Attack" method="_on_shooting_cd_timeout"]

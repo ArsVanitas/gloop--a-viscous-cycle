@@ -1,0 +1,403 @@
+[gd_scene load_steps=23 format=3 uid="uid://dlhb66pa55m7y"]
+
+[ext_resource type="Script" uid="uid://cxky3gdrakv8w" path="res://Scenes/Enemy/enemy.gd" id="1_c1vtg"]
+[ext_resource type="Texture2D" uid="uid://c2k1qn4h8xfr3" path="res://Assets/VFX/shadow.png" id="2_nwo70"]
+[ext_resource type="Texture2D" uid="uid://nqeayy85ng25" path="res://Assets/Characters/Slime1.png" id="3_altnu"]
+[ext_resource type="Texture2D" uid="uid://d18ijtpmajysf" path="res://Assets/VFX/slash_2.png" id="4_jthwq"]
+[ext_resource type="Script" uid="uid://b3nnfs31076mw" path="res://Scripts/EnemyBehavior.gd" id="5_j64y2"]
+[ext_resource type="Script" uid="uid://cytihr5nd5wq5" path="res://Scenes/Enemy/EnemyIdle.gd" id="6_vhe86"]
+[ext_resource type="Script" uid="uid://cm2hclm0qfc6y" path="res://Scenes/Enemy/EnemyMovement.gd" id="7_63lg8"]
+[ext_resource type="Script" uid="uid://btnm3yr0h83c8" path="res://Scenes/Enemy/EnemyAttack.gd" id="8_bnr6e"]
+[ext_resource type="Script" uid="uid://dlyifutkganda" path="res://Scripts/death.gd" id="9_pwx5h"]
+[ext_resource type="Texture2D" uid="uid://ddcj103clnjb2" path="res://Assets/Temp/muzzle_flash.png" id="10_6xiwq"]
+[ext_resource type="Texture2D" uid="uid://n0f1c2v0b6fu" path="res://Assets/Characters/Death_animation.png" id="11_47ht2"]
+[ext_resource type="Texture2D" uid="uid://ddwimkutpx4ga" path="res://Assets/UI/HPbar1.png" id="12_p5efq"]
+[ext_resource type="Texture2D" uid="uid://bhl5h4lyc40g7" path="res://Assets/UI/HPbar2.png" id="13_ub6yl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmwl5"]
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2t2r4"]
+radius = 250.0
+
+[sub_resource type="Animation" id="Animation_2chwy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemySprite:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slash:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r1w2j"]
+resource_name = "death"
+length = 1.20001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("EnemySprite:texture:load_path")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["res://.godot/imported/Death_animation.png-e0188fcaa56c85c5b91efb27ed2593d7.ctex"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_47ht2")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemySprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemySprite:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_6j3ko"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_beese"]
+resource_name = "melee"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slash:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.3, 0.4, 0.5, 0.596388),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.49012e-08, 0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1, -10),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1vi6b"]
+resource_name = "shoot"
+length = 0.50001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09999, 0.19999, 0.29999, 0.39999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_kiqm3"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00715625, 0.107156, 0.207156, 0.307156, 0.407156, 0.507156, 0.603578, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_beese"]
+_data = {
+&"RESET": SubResource("Animation_2chwy"),
+&"death": SubResource("Animation_r1w2j"),
+&"idle": SubResource("Animation_6j3ko"),
+&"melee": SubResource("Animation_beese"),
+&"shoot": SubResource("Animation_1vi6b"),
+&"walk": SubResource("Animation_kiqm3")
+}
+
+[node name="EnemyNew" type="CharacterBody2D" node_paths=PackedStringArray("fsm") groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_c1vtg")
+fsm = NodePath("Behavior")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_nwo70")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -28)
+texture = ExtResource("3_altnu")
+hframes = 5
+vframes = 4
+
+[node name="Slash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, -20)
+texture = ExtResource("4_jthwq")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_dmwl5")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Radius" type="CollisionShape2D" parent="DetectionRange"]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_2t2r4")
+
+[node name="Behavior" type="Node2D" parent="." node_paths=PackedStringArray("init_state", "animator", "sprite", "body", "initial_state", "idle", "movement", "death")]
+unique_name_in_owner = true
+script = ExtResource("5_j64y2")
+init_state = NodePath("Idle")
+animator = NodePath("../AnimationPlayer")
+sprite = NodePath("../EnemySprite")
+body = NodePath("..")
+initial_state = NodePath("Idle")
+idle = NodePath("Idle")
+movement = NodePath("Movement")
+death = NodePath("Death")
+metadata/_custom_type_script = "uid://bo41phaceogjp"
+
+[node name="Idle" type="Node2D" parent="Behavior" node_paths=PackedStringArray("enemy", "fsm", "animator")]
+unique_name_in_owner = true
+script = ExtResource("6_vhe86")
+enemy = NodePath("../..")
+fsm = NodePath("..")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="Movement" type="Node2D" parent="Behavior" node_paths=PackedStringArray("enemy", "fsm", "animator")]
+unique_name_in_owner = true
+script = ExtResource("7_63lg8")
+enemy = NodePath("../..")
+fsm = NodePath("..")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="Attack" type="Node2D" parent="Behavior" node_paths=PackedStringArray("enemy", "fsm", "animator")]
+unique_name_in_owner = true
+script = ExtResource("8_bnr6e")
+enemy = NodePath("../..")
+fsm = NodePath("..")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="Death" type="Node2D" parent="Behavior" node_paths=PackedStringArray("enemy", "fsm", "animator")]
+unique_name_in_owner = true
+script = ExtResource("9_pwx5h")
+enemy = NodePath("../..")
+fsm = NodePath("..")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="CrosshairMark" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+
+[node name="Crosshair" type="Sprite2D" parent="CrosshairMark"]
+unique_name_in_owner = true
+position = Vector2(40, 0)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("10_6xiwq")
+
+[node name="ShootingCD" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_beese")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -25.0
+offset_right = 88.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+rounded = true
+texture_under = ExtResource("12_p5efq")
+texture_progress = ExtResource("13_ub6yl")
+tint_progress = Color(1, 0.266667, 1, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="health_depleted" from="." to="Behavior" method="_on_enemy_health_depleted"]
+[connection signal="body_entered" from="DetectionRange" to="Behavior" method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="Behavior" method="_on_detection_range_body_exited"]
+[connection signal="timeout" from="ShootingCD" to="Behavior/Attack" method="_on_shooting_cd_timeout"]

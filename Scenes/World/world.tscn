@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c26s26dij1m24"]
+[gd_scene load_steps=5 format=3 uid="uid://c26s26dij1m24"]
 
 [ext_resource type="Texture2D" uid="uid://dlowooqwi1mgw" path="res://Assets/World/Background_Arena.png" id="1_t1gg8"]
+[ext_resource type="PackedScene" uid="uid://dn48uh7ua5u5s" path="res://Scenes/Player/player.tscn" id="2_3rhlx"]
+[ext_resource type="Script" uid="uid://gj2ec4vqgyf4" path="res://Scenes/World/camera.gd" id="3_l1hd3"]
+[ext_resource type="PackedScene" uid="uid://dlhb66pa55m7y" path="res://Scenes/Enemy/enemyNew.tscn" id="3_vadfg"]
 
 [node name="World" type="Node2D"]
 
@@ -11,3 +14,13 @@ offset_right = 959.0
 offset_bottom = 544.0
 texture = ExtResource("1_t1gg8")
 metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_3rhlx")]
+position = Vector2(123, 137)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+script = ExtResource("3_l1hd3")
+
+[node name="EnemyNew" parent="." instance=ExtResource("3_vadfg")]
+position = Vector2(182, 304)

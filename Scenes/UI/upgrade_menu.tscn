@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cf6orvkb3kumg"]
+[gd_scene load_steps=14 format=3 uid="uid://cf6orvkb3kumg"]
 
 [ext_resource type="Script" uid="uid://q5t2c31w1j6y" path="res://Scenes/World/upgrade_menu.gd" id="1_7giqg"]
 [ext_resource type="Texture2D" uid="uid://fm5hml4m7qc7" path="res://Assets/UI/Card4.png" id="2_6i826"]
 [ext_resource type="PackedScene" uid="uid://cwp6ikt5r6byo" path="res://Scenes/UI/upgrade_card.tscn" id="3_6i826"]
 [ext_resource type="Script" uid="uid://ca3jhwe2cluhl" path="res://Scenes/UI/cards.gd" id="3_mhx16"]
+[ext_resource type="Theme" uid="uid://byp663m3rwxxh" path="res://Scenes/UI/new_theme.tres" id="3_rumwm"]
 [ext_resource type="Resource" uid="uid://dqor5s71xeuyn" path="res://Resources/UpgradeCards/HealthMod.tres" id="4_pgfwh"]
 [ext_resource type="Resource" uid="uid://bjdvmqgkvswgp" path="res://Resources/UpgradeCards/DefenseMod.tres" id="5_o853v"]
 [ext_resource type="Resource" uid="uid://bhhymwgy4kg0t" path="res://Resources/UpgradeCards/scope.tres" id="6_opq14"]
@@ -11,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://debcu8d4i3tnm" path="res://Resources/UpgradeCards/movespeed.tres" id="7_opq14"]
 [ext_resource type="Resource" uid="uid://4s8g3jm005df" path="res://Resources/UpgradeCards/attackspeed.tres" id="9_rumwm"]
 [ext_resource type="Resource" uid="uid://cpeqbw4ridn4r" path="res://Resources/UpgradeCards/size.tres" id="11_cqbmj"]
+[ext_resource type="AudioStream" uid="uid://cqb0ev1f4nmhu" path="res://Assets/Audio/Sounds/607208__fupicat__fweeng-reverb.wav" id="13_cqbmj"]
 
 [node name="UpgradeMenu" type="CanvasLayer"]
 script = ExtResource("1_7giqg")
@@ -27,6 +29,8 @@ offset_right = 130.0
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_6i826")
 region_rect = Rect2(0, 0, 64, 112)
 patch_margin_left = 5
@@ -41,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_rumwm")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -94,6 +99,12 @@ card_res = ExtResource("7_opq14")
 visible = false
 layout_mode = 2
 card_res = ExtResource("11_cqbmj")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_cqbmj")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="pressed" from="NinePatchRect/MarginContainer/Cards/HP" to="." method="_on_hp_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/Cards/Def" to="." method="_on_def_pressed"]

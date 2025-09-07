@@ -21,12 +21,18 @@ config/icon="uid://b20mv0h82357q"
 GlobalPlayerStats="*res://Scripts/Global/GlobalPlayerStats.gd"
 GlobalEnemyStats="*res://Scripts/Global/GlobalEnemyStats.gd"
 GlobalUpgradeCards="*res://Scripts/Global/UpgradeCards.gd"
+GameManager="*res://Scripts/Global/GameManager.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [global_group]
 
